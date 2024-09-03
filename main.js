@@ -167,27 +167,7 @@ class CronosDownTCP extends InstanceBase {
 				this.log('error', `Server error: ${err.message}`)
 			})
 		})
-
-		server.listen(12345, () => {
-			this.log('info', 'Server listening on port 12345')
-		})
 	}
-
-	/*async sendCommand(cmd) {
-		if (cmd !== undefined) {
-			this.log('debug', `sending ${cmd} to ${this.config.host}`)
-
-			if (this.config.prot === 'tcp') {
-				this.init_tcp(async () => {
-					if (this.socket) {
-						await this.socket.send(cmd + '\r')
-					}
-				})
-			} else {
-				this.log('error', 'Unsupported protocol')
-			}
-		}
-	}*/
 }
 
 runEntrypoint(CronosDownTCP, [])
