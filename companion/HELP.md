@@ -12,3 +12,6 @@ On the function page, you will have options to increase or decrease the values �
 In the preset section, you will have information about your time list, and all of them will adjust as you add times to the list. This becomes dynamic; if you delete an item from the list, the buttons will adapt.
 
 On the set page, you have values ​​already defined for use, but when you press them, you must also press the set button to be able to define them.
+
+Here is the link to download the software:
+https://e0b8712b-5fe8-4da4-a56f-88241001bc6a.filesusr.com/archives/fe5632_35f68cf8ad4f42c2811dd60371ff9790.rar?dn=CronosDown.rar
