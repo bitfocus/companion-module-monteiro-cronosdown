@@ -5,7 +5,7 @@
 	"description": "This software is for use as a stopwatch, making it easier to manipulate times through the companion.",
 	"version": "1.0.0",
 	"license": "MIT",
-	"repository": "git+https://github.com/MonteiroVideo/cronosDown.git",
+	"repository": "git+https://github.com/bitfocus/companion-module-monteiro-cronosdown.git",
 	"bugs": "https://github.com/MonteiroVideo/cronosDown/issues",
 	"maintainers": [
 		{
