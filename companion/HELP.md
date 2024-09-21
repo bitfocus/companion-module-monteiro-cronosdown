@@ -15,4 +15,4 @@ On the set page, you have values ​​already defined for use, but when you pre
 
 Here is the link to download the software:
 
-https://e0b8712b-5fe8-4da4-a56f-88241001bc6a.filesusr.com/archives/fe5632_35f68cf8ad4f42c2811dd60371ff9790.rar?dn=CronosDown.rar
+https://monteiroaudiovisua.wixsite.com/ppt-video
