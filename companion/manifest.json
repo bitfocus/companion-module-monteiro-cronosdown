@@ -1,7 +1,7 @@
 {
-	"id": "CronosDown",
-	"name": "CronosDown",
-	"shortname": "Cronos",
+	"id": "jm-cronosdown",
+	"name": "jm-cronosdown",
+	"shortname": "cronosdown",
 	"description": "This software is for use as a stopwatch, making it easier to manipulate times through the companion.",
 	"version": "1.0.0",
 	"license": "MIT",
