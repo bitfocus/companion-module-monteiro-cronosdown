@@ -9,7 +9,7 @@
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/MonteiroVideo/cronosDown.git"
+		"url": "git+https://github.com/bitfocus/companion-module-monteiro-cronosdown.git"
 	},
 	"dependencies": {
 		"@companion-module/base": "~1.1.1"
