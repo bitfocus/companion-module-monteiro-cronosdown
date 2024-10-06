@@ -6,7 +6,7 @@
 	"version": "1.0.0",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-monteiro-cronosdown.git",
-	"bugs": "https://github.com/MonteiroVideo/cronosDown/issues",
+	"bugs": "https://github.com/bitfocus/companion-module-monteiro-cronosdown/issues",
 	"maintainers": [
 		{
 			"name": "Bruno Monteiro",
