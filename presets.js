@@ -238,8 +238,9 @@ export function getPresetDefinitions() {
     }
 
     for (let i = 1; i <= 20; i++) {
-        const actionId = `preset${i}`;
-        const pptCommand = i < 10 ? `preset0${i}` : `preset${i}`;
+        const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
+        const actionId = `preset${paddedNumber}`;
+        const pptCommand = `preset${paddedNumber}`;
         const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
         
         presets[`preset_${actionId}`] = {
