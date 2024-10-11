@@ -18,7 +18,12 @@ export function getActionDefinitions(self) {
 			}
 		},
 	})
-
+	for (let i = 1; i <= 20; i++) {
+        const actionId = `preset${i}`;
+        const command = `preset${i}`;
+        
+        actions[actionId] = createSimpleCommandAction(`Preset ${i}`, command);
+    	}
 	// Creating simple command actions
 	const simpleCommands = {
 		ESC: 'esc',
@@ -45,7 +50,9 @@ export function getActionDefinitions(self) {
 		addMin: 'addMin',
 		subtractMin: 'subtractMin',
 		AA: 'AA',
-		aa: 'aa'
+		aa: 'aa',
+		BB: 'BB',
+		bb: 'bb'
 
 	}
 
