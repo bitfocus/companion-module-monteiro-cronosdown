@@ -19,10 +19,11 @@ export function getActionDefinitions(self) {
 		},
 	})
 	for (let i = 1; i <= 20; i++) {
-        const actionId = `preset${i}`;
-        const command = `preset${i}`;
-        
-        actions[actionId] = createSimpleCommandAction(`Preset ${i}`, command);
+		const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
+	        const actionId = `preset${i}`;
+	        const command = `preset${paddedNumber}`;
+	        
+	        actions[actionId] = createSimpleCommandAction(`Preset ${i}`, command);
     	}
 	// Creating simple command actions
 	const simpleCommands = {
@@ -36,11 +37,11 @@ export function getActionDefinitions(self) {
 		SET: 'set',
 		RESET: 'reset',
 		SET1: 'set1',
-        SET5: 'set5',
-        SET15: 'set15',
-        SET30: 'set30',
-        SET45: 'set45',
-        SET60: 'set60',
+	        SET5: 'set5',
+	        SET15: 'set15',
+	        SET30: 'set30',
+	        SET45: 'set45',
+	        SET60: 'set60',
 		addMinute: 'addMinute',
 		addFiveMinutes: 'addFiveMinutes',
 		subtractMinute: 'subtractMinute',
