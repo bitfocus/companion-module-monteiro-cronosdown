@@ -1,6 +1,6 @@
 {
 	"name": "monteiro-cronosdown",
-	"version": "1.0.1",
+	"version": "1.1.0",
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
@@ -12,9 +12,9 @@
 		"url": "git+https://github.com/bitfocus/companion-module-monteiro-cronosdown.git"
 	},
 	"dependencies": {
-		"@companion-module/base": "~1.1.1"
+		"@companion-module/base": "^1.11.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^1.0.0"
+		"@companion-module/tools": "^2.1.0"
 	}
 }
