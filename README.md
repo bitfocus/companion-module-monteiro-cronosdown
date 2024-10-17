@@ -1,2 +1,2 @@
-# JM-CronosDown
+# monteiro-cronosdown
 See HELP.md and LICENSE
