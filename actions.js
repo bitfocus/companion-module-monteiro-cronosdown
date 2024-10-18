@@ -18,13 +18,15 @@ export function getActionDefinitions(self) {
 			}
 		},
 	})
-	for (let i = 1; i <= 20; i++) {
+
+	// Loop for creating actions for each preset
+    for (let i = 1; i <= 20; i++) {
 		const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
-	        const actionId = `preset${i}`;
-	        const command = `preset${paddedNumber}`;
-	        
-	        actions[actionId] = createSimpleCommandAction(`Preset ${i}`, command);
-    	}
+        const actionId = `preset${i}`;
+        const command = `preset${paddedNumber}`;
+        
+        actions[actionId] = createSimpleCommandAction(`Preset ${i}`, command);
+    }
 	// Creating simple command actions
 	const simpleCommands = {
 		ESC: 'esc',
@@ -34,10 +36,10 @@ export function getActionDefinitions(self) {
 		FECHAR_VIDEO: 'videoexit',
 		START: 'start',
 		STOP: 'stop',
-		SET: 'set',
+		DEFINE: 'define',
 		RESET: 'reset',
-		SET1: 'set1',
-	        SET5: 'set5',
+		SET1: 'set01',
+	        SET5: 'set05',
 	        SET15: 'set15',
 	        SET30: 'set30',
 	        SET45: 'set45',
@@ -60,7 +62,6 @@ export function getActionDefinitions(self) {
 	for (const [name, command] of Object.entries(simpleCommands)) {
 		actions[name] = createSimpleCommandAction(name, command)
 	}
-
 
 	return actions
 }
