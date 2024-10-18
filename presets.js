@@ -244,13 +244,13 @@ export function getPresetDefinitions() {
     }
 
     for (let i = 1; i <= 20; i++) {
-		const videoCommand = i < 10 ? `PRESET\n0${i}` : `PRESET\n${i}`;
-		const videoText = i < 10 ? `preset0${i}` : `preset${i}`;
+		const presetCommand = i < 10 ? `PRESET\n0${i}` : `PRESET\n${i}`;
+		const presetText = i < 10 ? `preset0${i}` : `preset${i}`;
         const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
-		presets[`preset_${videoCommand}`] = {
+		presets[`preset_${presetCommand}`] = {
 			type: 'button',
 			category: 'Preset',
-			name: `Send ${videoCommand.toUpperCase()} Command`,
+			name: `Send ${presetCommand.toUpperCase()} Command`,
 			style: {
 				text: variableName,
 				size: '14',
@@ -262,7 +262,7 @@ export function getPresetDefinitions() {
 				{
 					down: [
 						{
-							actionId: videoText.toUpperCase(),
+							actionId: presetText.toUpperCase(),
 						},
 					],
 					up: [],
