@@ -208,10 +208,10 @@ export function getPresetDefinitions() {
     addTimePreset('addFiveMinutes', 'ADD\n5 MIN', 'Add 5 Minutes');
     addTimePreset('subtractMinute', 'SUB\n1 MIN', 'Subtract 1 Minute');
     addTimePreset('subtractFiveMinutes', 'SUB\n5 MIN', 'Subtract 5 Minutes');
-    addTimePreset('addHour', 'ADD\n1 HR', 'Add 1 Hour');
-    addTimePreset('subtractHour', 'SUB\n1 HR', 'Subtract 1 Hour');
-    addTimePreset('addMin', 'ADD\nMIN', 'Add Minute');
-    addTimePreset('subtractMin', 'SUB\nMIN', 'Subtract Minute');
+    //addTimePreset('addHour', 'ADD\n1 HR', 'Add 1 Hour');
+    //addTimePreset('subtractHour', 'SUB\n1 HR', 'Subtract 1 Hour');
+    //addTimePreset('addMin', 'ADD\nMIN', 'Add Minute');
+    //addTimePreset('subtractMin', 'SUB\nMIN', 'Subtract Minute');
     addTimePreset('AA', 'AA\nTimer', 'AA');
     addTimePreset('aa', 'aa\nTimer', 'aa');
     addTimePreset('BB', 'AA\nMsg', 'BB');
@@ -243,39 +243,33 @@ export function getPresetDefinitions() {
         };
     }
 
+    for (let i = 1; i <= 20; i++) {
+		const videoCommand = i < 10 ? `PRESET\n0${i}` : `PRESET\n${i}`;
+		const videoText = i < 10 ? `preset0${i}` : `preset${i}`;
+        const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
+		presets[`preset_${videoCommand}`] = {
+			type: 'button',
+			category: 'Preset',
+			name: `Send ${videoCommand.toUpperCase()} Command`,
+			style: {
+				text: variableName,
+				size: '14',
+				color: '16777215',
+				bgcolor: '25600',
+				show_topbar: false
+			},
+			steps: [
+				{
+					down: [
+						{
+							actionId: videoText.toUpperCase(),
+						},
+					],
+					up: [],
+				},
+			],
+		};
+	}
     
-    // Gerar presets de comando para os presets 1 a 20
-for (let i = 1; i <= 20; i++) {
-    const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
-    const actionId = `preset${paddedNumber}`;
-    const pptCommand = `preset${paddedNumber}`;
-    const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
-    
-    presets[`preset_${actionId}`] = {
-        type: 'button',
-        category: 'Preset',
-        name: `Send ${pptCommand.toUpperCase()} Command`,
-        style: {
-            text: variableName,
-            size: '14',
-            color: '16777215',
-            bgcolor: '25600',
-            show_topbar: false
-        },
-        steps: [
-            {
-                down: [
-                    {
-                        actionId: actionId,
-                        options: {
-                            presetId: i, // Identifica o número do preset
-                        },
-                    },
-                ],
-                up: [],
-            },
-        ],
-    };
-}
-    return presets;
+   return presets;
 }
