@@ -19,14 +19,6 @@ export function getActionDefinitions(self) {
 		},
 	})
 
-	// Loop for creating actions for each preset
-    for (let i = 1; i <= 20; i++) {
-		const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
-        const actionId = `preset${i}`;
-        const command = `preset${paddedNumber}`;
-        
-        actions[actionId] = createSimpleCommandAction(`Preset ${i}`, command);
-    }
 	// Creating simple command actions
 	const simpleCommands = {
 		ESC: 'esc',
@@ -39,11 +31,11 @@ export function getActionDefinitions(self) {
 		DEFINE: 'define',
 		RESET: 'reset',
 		SET1: 'set01',
-	        SET5: 'set05',
-	        SET15: 'set15',
-	        SET30: 'set30',
-	        SET45: 'set45',
-	        SET60: 'set60',
+        SET5: 'set05',
+        SET15: 'set15',
+        SET30: 'set30',
+        SET45: 'set45',
+        SET60: 'set60',
 		addMinute: 'addMinute',
 		addFiveMinutes: 'addFiveMinutes',
 		subtractMinute: 'subtractMinute',
@@ -57,6 +49,11 @@ export function getActionDefinitions(self) {
 		BB: 'BB',
 		bb: 'bb'
 
+	}
+
+	for (let i = 1; i <= 20; i++) {
+		const videoCommand = `PRESET${i.toString().padStart(2, '0')}`;
+		simpleCommands[videoCommand] = videoCommand.toLowerCase();
 	}
 
 	for (const [name, command] of Object.entries(simpleCommands)) {
