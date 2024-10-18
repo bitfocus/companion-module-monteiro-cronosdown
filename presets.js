@@ -66,12 +66,12 @@ export function getPresetDefinitions() {
                 },
             ],
         },
-        preset_set: {
+        preset_define: {
             type: 'button',
             category: 'Control',
             name: 'Set Timer',
             style: {
-                text: 'SET',
+                text: 'DEFINE',
                 size: '18',
                 color: '16777215',
                 bgcolor: '43520',
@@ -81,7 +81,7 @@ export function getPresetDefinitions() {
                 {
                     down: [
                         {
-                            actionId: 'SET',
+                            actionId: 'DEFINE',
                         },
                     ],
                     up: [],
@@ -164,6 +164,8 @@ export function getPresetDefinitions() {
 
     };
 
+
+    // Função auxiliar para adicionar presets SET
     function addSetPreset(minutes) {
         presets[`preset_set${minutes}`] = {
             type: 'button',
@@ -191,7 +193,8 @@ export function getPresetDefinitions() {
             ],
         };
     }
-    
+
+    // Adicionar presets SET
     addSetPreset(1);
     addSetPreset(5);
     addSetPreset(15);
@@ -199,6 +202,8 @@ export function getPresetDefinitions() {
     addSetPreset(45);
     addSetPreset(60);
 
+
+    // Adicionar presets de tempo
     addTimePreset('addMinute', 'ADD\n1 MIN', 'Add 1 Minute');
     addTimePreset('addFiveMinutes', 'ADD\n5 MIN', 'Add 5 Minutes');
     addTimePreset('subtractMinute', 'SUB\n1 MIN', 'Subtract 1 Minute');
@@ -212,6 +217,7 @@ export function getPresetDefinitions() {
     addTimePreset('BB', 'AA\nMsg', 'BB');
     addTimePreset('bb', 'aa\nMsg', 'bb');
 
+    // Função auxiliar para adicionar presets de tempo
     function addTimePreset(actionId, text, name) {
         presets[`preset_${actionId}`] = {
             type: 'button',
@@ -237,38 +243,39 @@ export function getPresetDefinitions() {
         };
     }
 
-    for (let i = 1; i <= 20; i++) {
-        const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
-        const actionId = `preset${paddedNumber}`;
-        const pptCommand = `preset${paddedNumber}`;
-        const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
-        
-        presets[`preset_${actionId}`] = {
-            type: 'button',
-            category: 'Preset',
-            name: `Send ${pptCommand.toUpperCase()} Command`,
-            style: {
-                text: variableName,
-                size: '14',
-                color: '16777215',
-                bgcolor: '25600',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [
-                        {
-                            actionId: actionId,
-                            options: {
-                                presetId: i, // Identifica o número do preset
-                            },
+    
+    // Gerar presets de comando para os presets 1 a 20
+for (let i = 1; i <= 20; i++) {
+    const paddedNumber = i < 10 ? `0${i}` : `${i}`; // Adiciona zero à esquerda para números de 1 a 9
+    const actionId = `preset${paddedNumber}`;
+    const pptCommand = `preset${paddedNumber}`;
+    const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
+    
+    presets[`preset_${actionId}`] = {
+        type: 'button',
+        category: 'Preset',
+        name: `Send ${pptCommand.toUpperCase()} Command`,
+        style: {
+            text: variableName,
+            size: '14',
+            color: '16777215',
+            bgcolor: '25600',
+            show_topbar: false
+        },
+        steps: [
+            {
+                down: [
+                    {
+                        actionId: actionId,
+                        options: {
+                            presetId: i, // Identifica o número do preset
                         },
-                    ],
-                    up: [],
-                },
-            ],
-        };
-    }
-
+                    },
+                ],
+                up: [],
+            },
+        ],
+    };
+}
     return presets;
 }
