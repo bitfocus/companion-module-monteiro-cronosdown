@@ -47,8 +47,7 @@ class CronosDownTCP extends InstanceBase {
 		this.updateStatus(InstanceStatus.Connecting);
 	
 		if (this.config.host) {
-			// Substitua 'this.config.host' pelo IP do servidor (máquina do C#)
-			this.socket = new TCPHelper(this.config.host, this.config.port); // Porta do servidor C#
+			this.socket = new TCPHelper(this.config.host, this.config.port); 
 	
 			this.socket.on('status_change', (status, message) => {
 				this.updateStatus(status, message);
@@ -131,24 +130,6 @@ class CronosDownTCP extends InstanceBase {
 
 		this.setVariableValues(initialValues);
 	}
-
-	update_tcp_variables() {
-		const now = new Date()
-		const hours = now.getHours().toString().padStart(2, '0')
-		const minutes = now.getMinutes().toString().padStart(2, '0')
-		const seconds = now.getSeconds().toString().padStart(2, '0')
-
-		this.setVariableValues({
-			timer_hours: hours,
-			timer_minutes: minutes,
-			timer_seconds: seconds,
-			timer: `${hours}:${minutes}:${seconds}`
-		})
-	}
-	
-
-
-	
 }
 
 runEntrypoint(CronosDownTCP, [])
