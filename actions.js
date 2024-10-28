@@ -31,11 +31,11 @@ export function getActionDefinitions(self) {
 		DEFINE: 'define',
 		RESET: 'reset',
 		SET1: 'set01',
-	        SET5: 'set05',
-	        SET15: 'set15',
-	        SET30: 'set30',
-	        SET45: 'set45',
-	        SET60: 'set60',
+        SET5: 'set05',
+        SET15: 'set15',
+        SET30: 'set30',
+        SET45: 'set45',
+        SET60: 'set60',
 		addMinute: 'addMinute',
 		addFiveMinutes: 'addFiveMinutes',
 		subtractMinute: 'subtractMinute',
@@ -52,8 +52,8 @@ export function getActionDefinitions(self) {
 	}
 
 	for (let i = 1; i <= 20; i++) {
-		const videoCommand = `PRESET${i.toString().padStart(2, '0')}`;
-		simpleCommands[videoCommand] = videoCommand.toLowerCase();
+		const presetCommand = `PRESET${i.toString().padStart(2, '0')}`;
+		simpleCommands[presetCommand] = presetCommand.toLowerCase();
 	}
 
 	for (const [name, command] of Object.entries(simpleCommands)) {
