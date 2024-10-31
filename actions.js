@@ -52,8 +52,8 @@ export function getActionDefinitions(self) {
 	}
 
 	for (let i = 1; i <= 20; i++) {
-		const presetCommand = `PRESET${i.toString().padStart(2, '0')}`;
-		simpleCommands[presetCommand] = presetCommand.toLowerCase();
+		const videoCommand = `PRESET${i.toString().padStart(2, '0')}`;
+		simpleCommands[videoCommand] = videoCommand.toLowerCase();
 	}
 
 	for (const [name, command] of Object.entries(simpleCommands)) {
