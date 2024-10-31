@@ -164,8 +164,6 @@ export function getPresetDefinitions() {
 
     };
 
-
-    // Função auxiliar para adicionar presets SET
     function addSetPreset(minutes) {
         presets[`preset_set${minutes}`] = {
             type: 'button',
@@ -208,10 +206,6 @@ export function getPresetDefinitions() {
     addTimePreset('addFiveMinutes', 'ADD\n5 MIN', 'Add 5 Minutes');
     addTimePreset('subtractMinute', 'SUB\n1 MIN', 'Subtract 1 Minute');
     addTimePreset('subtractFiveMinutes', 'SUB\n5 MIN', 'Subtract 5 Minutes');
-    //addTimePreset('addHour', 'ADD\n1 HR', 'Add 1 Hour');
-    //addTimePreset('subtractHour', 'SUB\n1 HR', 'Subtract 1 Hour');
-    //addTimePreset('addMin', 'ADD\nMIN', 'Add Minute');
-    //addTimePreset('subtractMin', 'SUB\nMIN', 'Subtract Minute');
     addTimePreset('AA', 'AA\nTimer', 'AA');
     addTimePreset('aa', 'aa\nTimer', 'aa');
     addTimePreset('BB', 'AA\nMsg', 'BB');
