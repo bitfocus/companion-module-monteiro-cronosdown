@@ -1,269 +1,84 @@
 export function getPresetDefinitions() {
-    const presets = {
-        preset_start: {
-            type: 'button',
-            category: 'Control',
-            name: 'Start Timer',
-            style: {
-                text: 'START',
-                size: '18',
-                color: '16777215',
-                bgcolor: '43520',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [
-                        {
-                            actionId: 'START',
-                        },
-                    ],
-                    up: [],
-                },
-            ],
-        },
-        preset_stop: {
-            type: 'button',
-            category: 'Control',
-            name: 'Stop Timer',
-            style: {
-                text: 'STOP',
-                size: '18',
-                color: '16777215',
-                bgcolor: '9109504',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [
-                        {
-                            actionId: 'STOP',
-                        },
-                    ],
-                    up: [],
-                },
-            ],
-        },
-        preset_reset: {
-            type: 'button',
-            category: 'Control',
-            name: 'Reset Timer',
-            style: {
-                text: 'RESET',
-                size: '18',
-                color: '0',
-                bgcolor: '8421504',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [
-                        {
-                            actionId: 'RESET',
-                        },
-                    ],
-                    up: [],
-                },
-            ],
-        },
-        preset_define: {
-            type: 'button',
-            category: 'Control',
-            name: 'Set Timer',
-            style: {
-                text: 'DEFINE',
-                size: '18',
-                color: '16777215',
-                bgcolor: '43520',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [
-                        {
-                            actionId: 'DEFINE',
-                        },
-                    ],
-                    up: [],
-                },
-            ],
-        },
-        preset_hour: {
-            type: 'button',
-            category: 'Display',
-            name: 'HOUR',
-            style: {
-                text: '$(Cronos:timer_hours)',
-                size: 'AUTO',
-                color: '16777215',
-                bgcolor: '9109504',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [],
-                    up: [],
-                },
-            ],
-        },
-        preset_minute: {
-            type: 'button',
-            category: 'Display',
-            name: 'MINUTE',
-            style: {
-                text: '$(Cronos:timer_minutes)',
-                size: 'AUTO',
-                color: '16777215',
-                bgcolor: '9109504',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [],
-                    up: [],
-                },
-            ],
-        },
-        preset_second: {
-            type: 'button',
-            category: 'Display',
-            name: 'SECOND',
-            style: {
-                text: '$(Cronos:timer_seconds)',
-                size: 'AUTO',
-                color: '16777215',
-                bgcolor: '9109504',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [],
-                    up: [],
-                },
-            ],
-        },
-        preset_timer: {
-            type: 'button',
-            category: 'Display',
-            name: 'TIMER',
-            style: {
-                text: '$(Cronos:timer)',
-                size: 'AUTO',
-                color: '16777215',
-                bgcolor: '9109504',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [],
-                    up: [],
-                },
-            ],
-        },
+    const presets = {};
 
-
-    };
-
-    function addSetPreset(minutes) {
-        presets[`preset_set${minutes}`] = {
+    // Função para criar presets básicos com texto e ação customizados
+    function createPreset(id, category, name, text, color, bgcolor, actionId, size = '18') {
+        presets[`preset_${id}`] = {
             type: 'button',
-            category: 'SET',
-            name: `Set ${minutes} Minutes`,
-            style: {
-                text: `SET\n${minutes} MIN`,
-                size: '18',
-                color: '16777215',
-                bgcolor: '180',
-                show_topbar: false
-            },
-            steps: [
-                {
-                    down: [
-                        {
-                            actionId: `SET${minutes}`,  // Ação identificada como SET
-                            options: {
-                                minutes: minutes,  // Opções específicas para o SET, como os minutos
-                            },
-                        },
-                    ],
-                    up: [],
-                },
-            ],
-        };
-    }
-
-    // Adicionar presets SET
-    addSetPreset(1);
-    addSetPreset(5);
-    addSetPreset(15);
-    addSetPreset(30);
-    addSetPreset(45);
-    addSetPreset(60);
-
-
-    // Adicionar presets de tempo
-    addTimePreset('addMinute', 'ADD\n1 MIN', 'Add 1 Minute');
-    addTimePreset('addFiveMinutes', 'ADD\n5 MIN', 'Add 5 Minutes');
-    addTimePreset('subtractMinute', 'SUB\n1 MIN', 'Subtract 1 Minute');
-    addTimePreset('subtractFiveMinutes', 'SUB\n5 MIN', 'Subtract 5 Minutes');
-    addTimePreset('AA', 'AA\nTimer', 'AA');
-    addTimePreset('aa', 'aa\nTimer', 'aa');
-    addTimePreset('BB', 'AA\nMsg', 'BB');
-    addTimePreset('bb', 'aa\nMsg', 'bb');
-
-    // Função auxiliar para adicionar presets de tempo
-    function addTimePreset(actionId, text, name) {
-        presets[`preset_${actionId}`] = {
-            type: 'button',
-            category: 'Function',
+            category: category,
             name: name,
             style: {
                 text: text,
-                size: '18',
-                color: '16777215',
-                bgcolor: '0',
+                size: size,
+                color: color,
+                bgcolor: bgcolor,
                 show_topbar: false
             },
             steps: [
                 {
-                    down: [
-                        {
-                            actionId: actionId,
-                        },
-                    ],
-                    up: [],
+                    down: actionId ? [{ actionId: actionId }] : [],
+                    up: []
                 },
             ],
         };
     }
 
+    // Presets de controle START, STOP, RESET, DEFINE
+    const controlPresets = [
+        { id: 'start', name: 'Start Timer', text: 'START', color: '16777215', bgcolor: '43520', actionId: 'START' },
+        { id: 'stop', name: 'Stop Timer', text: 'STOP', color: '16777215', bgcolor: '9109504', actionId: 'STOP' },
+        { id: 'reset', name: 'Reset Timer', text: 'RESET', color: '0', bgcolor: '8421504', actionId: 'RESET' },
+        { id: 'define', name: 'Set Timer', text: 'DEFINE', color: '16777215', bgcolor: '43520', actionId: 'DEFINE' }
+    ];
+    controlPresets.forEach(({ id, name, text, color, bgcolor, actionId }) =>
+        createPreset(id, 'Control', name, text, color, bgcolor, actionId)
+    );
+
+    // Presets de exibição de tempo HOUR, MINUTE, SECOND, TIMER
+    const displayPresets = [
+        { id: 'hour', name: 'HOUR', text: '$(Cronos:timer_hours)', bgcolor: '9109504' },
+        { id: 'minute', name: 'MINUTE', text: '$(Cronos:timer_minutes)', bgcolor: '9109504' },
+        { id: 'second', name: 'SECOND', text: '$(Cronos:timer_seconds)', bgcolor: '9109504' },
+        { id: 'timer', name: 'TIMER', text: '$(Cronos:timer)', bgcolor: '9109504' }
+    ];
+    displayPresets.forEach(({ id, name, text, bgcolor }) =>
+        createPreset(id, 'Display', name, text, '16777215', bgcolor)
+    );
+
+    // Função para adicionar presets SET de minutos
+    function addSetPreset(minutes) {
+        createPreset(`set${minutes}`, 'SET', `Set ${minutes} Minutes`, `SET\n${minutes} MIN`, '16777215', '180', `SET${minutes}`);
+    }
+    [1, 5, 15, 30, 45, 60].forEach(addSetPreset);
+
+    // Função para adicionar presets de tempo personalizados
+    function addTimePreset(actionId, text, name) {
+        createPreset(actionId, 'Function', name, text, '16777215', '0', actionId);
+    }
+    [
+        { id: 'addMinute', text: 'ADD\n1 MIN', name: 'Add 1 Minute' },
+        { id: 'addFiveMinutes', text: 'ADD\n5 MIN', name: 'Add 5 Minutes' },
+        { id: 'subtractMinute', text: 'SUB\n1 MIN', name: 'Subtract 1 Minute' },
+        { id: 'subtractFiveMinutes', text: 'SUB\n5 MIN', name: 'Subtract 5 Minutes' },
+        { id: 'AA', text: 'AA\nTimer', name: 'AA' },
+        { id: 'aa', text: 'aa\nTimer', name: 'aa' },
+        { id: 'BB', text: 'AA\nMsg', name: 'BB' },
+        { id: 'bb', text: 'aa\nMsg', name: 'bb' }
+    ].forEach(({ id, text, name }) => addTimePreset(id, text, name));
+
+    // Presets de comando (PRESET01 a PRESET20)
     for (let i = 1; i <= 20; i++) {
-		const presetCommand = i < 10 ? `PRESET\n0${i}` : `PRESET\n${i}`;
-		const presetText = i < 10 ? `preset0${i}` : `preset${i}`;
-        const variableName = `$(Cronos:item${i})`; // Nome da variável correspondente ao item
-		presets[`preset_${presetCommand}`] = {
-			type: 'button',
-			category: 'Preset',
-			name: `Send ${presetCommand.toUpperCase()} Command`,
-			style: {
-				text: variableName,
-				size: '14',
-				color: '16777215',
-				bgcolor: '25600',
-				show_topbar: false
-			},
-			steps: [
-				{
-					down: [
-						{
-							actionId: presetText.toUpperCase(),
-						},
-					],
-					up: [],
-				},
-			],
-		};
-	}
-    
-   return presets;
+        const id = i < 10 ? `0${i}` : i;
+        createPreset(
+            `preset${id}`,
+            'Preset',
+            `Send PRESET${id} Command`,
+            `$(Cronos:item${i})`,
+            '16777215',
+            '25600',
+            `PRESET${id}`
+        );
+    }
+
+    return presets;
 }
