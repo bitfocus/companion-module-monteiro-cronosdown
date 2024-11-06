@@ -21,11 +21,6 @@
 	},
 	"legacyIds": [],
 	"manufacturer": "Monteiro",
-	"products": [
-		"CronosDown"
-	],
-	"keywords": [
-		"Software",
-		"Timer"
-	]
+	"products": ["CronosDown"],
+	"keywords": ["Software", "Timer"]
 }

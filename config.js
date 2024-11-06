@@ -36,7 +36,4 @@ export const ConfigFields = [
 		width: 4,
 		regex: Regex.PORT,
 	},
-
-
-
 ]

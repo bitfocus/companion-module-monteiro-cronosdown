@@ -4,7 +4,8 @@
 	"main": "main.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"format": "prettier -w ."
 	},
 	"license": "MIT",
 	"repository": {
@@ -15,6 +16,7 @@
 		"@companion-module/base": "^1.11.0"
 	},
 	"devDependencies": {
-		"@companion-module/tools": "^2.1.0"
+		"@companion-module/tools": "^2.1.0",
+		"prettier": "^3.3.3"
 	}
 }

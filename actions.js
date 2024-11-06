@@ -1,5 +1,4 @@
 export function getActionDefinitions(self) {
-
 	const actions = {}
 	// Helper function to create simple command actions
 	const createSimpleCommandAction = (name, command) => ({
@@ -31,11 +30,11 @@ export function getActionDefinitions(self) {
 		DEFINE: 'define',
 		RESET: 'reset',
 		SET1: 'set01',
-	        SET5: 'set05',
-	        SET15: 'set15',
-	        SET30: 'set30',
-	        SET45: 'set45',
-	        SET60: 'set60',
+		SET5: 'set05',
+		SET15: 'set15',
+		SET30: 'set30',
+		SET45: 'set45',
+		SET60: 'set60',
 		addMinute: 'addMinute',
 		addFiveMinutes: 'addFiveMinutes',
 		subtractMinute: 'subtractMinute',
@@ -43,13 +42,12 @@ export function getActionDefinitions(self) {
 		AA: 'AA',
 		aa: 'aa',
 		BB: 'BB',
-		bb: 'bb'
-
+		bb: 'bb',
 	}
 
 	for (let i = 1; i <= 20; i++) {
-		const videoCommand = `PRESET${i.toString().padStart(2, '0')}`;
-		simpleCommands[videoCommand] = videoCommand.toLowerCase();
+		const videoCommand = `PRESET${i.toString().padStart(2, '0')}`
+		simpleCommands[videoCommand] = videoCommand.toLowerCase()
 	}
 
 	for (const [name, command] of Object.entries(simpleCommands)) {
