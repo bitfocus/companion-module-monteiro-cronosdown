@@ -2,20 +2,20 @@ export function getPresetDefinitions() {
 	const presets = {}
 
 	// ---------------------------------------------------------
-	// Função base para criar presets
+	// Base function to create presets
 	// ---------------------------------------------------------
 	function createPreset(id, category, name, text, color, bgcolor, actionId, size = 24) {
 		presets[`preset_${id}`] = {
 			type: 'button',
-			category,
-			name,
+			category: category,
+			name: name,
 			style: {
 				text,
 				size,
 				color: Number(color),
 				bgcolor: Number(bgcolor),
 
-				// permite feedback mudar cor (ESSENCIAL)
+				// allows feedback to change color (ESSENTIAL)
 				bgcolorVar: true,
 				colorVar: true,
 
@@ -23,7 +23,7 @@ export function getPresetDefinitions() {
 			},
 			steps: [
 				{
-					down: actionId ? [{ actionId }] : [],
+					down: actionId ? [{ actionId: actionId }] : [],
 					up: [],
 				},
 			],
@@ -31,7 +31,7 @@ export function getPresetDefinitions() {
 	}
 
 	// ---------------------------------------------------------
-	// Função: aplicar feedback padrão automaticamente
+	// Function: apply default timer feedback automatically
 	// ---------------------------------------------------------
 	function applyTimerFeedback(presetName) {
 		if (!presets[presetName]) return
@@ -51,9 +51,8 @@ export function getPresetDefinitions() {
 			},
 		]
 	}
-
 	// ---------------------------------------------------------
-	// Botões de Controle
+	// Control Buttons
 	// ---------------------------------------------------------
 	const controlPresets = [
 		{ id: 'start', name: 'Start Timer', text: 'START', color: 0xffffff, bgcolor: 0x00aa00, actionId: 'START' },
@@ -65,9 +64,8 @@ export function getPresetDefinitions() {
 	controlPresets.forEach((p) =>
 		createPreset(p.id, 'Control', p.name, p.text, p.color, p.bgcolor, p.actionId)
 	)
-
 	// ---------------------------------------------------------
-	// Botões de Exibição
+	// Display Buttons
 	// ---------------------------------------------------------
 	const displayPresets = [
 		{ id: 'hour', name: 'HOUR', text: '$(Cronos:timer_hours)', bgcolor: 0x555555 },
@@ -81,7 +79,7 @@ export function getPresetDefinitions() {
 	)
 
 	// ---------------------------------------------------------
-	// Aplicar feedback automático aos botões que mostram tempo
+	// Apply automatic feedback to buttons that display time
 	// ---------------------------------------------------------
 	applyTimerFeedback('preset_timer')
 	applyTimerFeedback('preset_hour')
@@ -89,7 +87,7 @@ export function getPresetDefinitions() {
 	applyTimerFeedback('preset_second')
 
 	// ---------------------------------------------------------
-	// Botões de Tempo Fixo (SET)
+	// Fixed Time Buttons (SET)
 	// ---------------------------------------------------------
 	function addSetPreset(minutes) {
 		createPreset(
@@ -104,9 +102,8 @@ export function getPresetDefinitions() {
 	}
 
 	;[1, 5, 15, 30, 45, 60].forEach(addSetPreset)
-
 	// ---------------------------------------------------------
-	// Funções de ajuste incremental
+	// Increment Adjustment Functions
 	// ---------------------------------------------------------
 	function addTimePreset(actionId, text, name) {
 		createPreset(actionId, 'Function', name, text, 0xffffff, 0x000000, actionId)
@@ -124,10 +121,10 @@ export function getPresetDefinitions() {
 	].forEach((p) => addTimePreset(p.id, p.text, p.name))
 
 	// ---------------------------------------------------------
-	// Presets 01–20 (Itens)
+	// Presets 01–20 (Items)
 	// ---------------------------------------------------------
 	for (let i = 1; i <= 20; i++) {
-		const id = i < 10 ? `0${i}` : `${i}`
+		const id = i < 10 ? `0${i}` : i
 
 		createPreset(
 			`preset${id}`,
