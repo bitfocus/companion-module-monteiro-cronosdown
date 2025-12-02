@@ -1,4 +1,4 @@
-﻿import { InstanceBase, InstanceStatus, runEntrypoint, TCPHelper } from '@companion-module/base'
+import { InstanceBase, InstanceStatus, runEntrypoint, TCPHelper } from '@companion-module/base'
 import { ConfigFields } from './config.js'
 import { getActionDefinitions } from './actions.js'
 import { getPresetDefinitions } from './presets.js'
@@ -8,7 +8,7 @@ class CronosDownTCP extends InstanceBase {
 	async init(config) {
 		this.config = config
 
-		// Load Actions, Presets e Feedbacks
+		// Load Actions, Presets and Feedbacks
 		this.setActionDefinitions(getActionDefinitions(this))
 		this.setPresetDefinitions(getPresetDefinitions())
 		this.setFeedbackDefinitions(getFeedbackDefinitions(this))
@@ -41,7 +41,7 @@ class CronosDownTCP extends InstanceBase {
 	}
 
 	// ---------------------------------------------------------
-	// SOCKET TCP
+	// TCP SOCKET
 	// ---------------------------------------------------------
 	init_tcp() {
 		if (this.socket) {
@@ -58,14 +58,13 @@ class CronosDownTCP extends InstanceBase {
 			this.socket.on('status_change', (status, message) => {
 				this.updateStatus(status, message)
 				this.socket.send('VERSION\r\n').catch((e) => {
-					this.log('error', `Socket error: ${e}`)
 				})
 			})
 
 			this.socket.on('data', (data) => {
 				const message = data.toString('utf8')
 
-				// Trata pacotes duplos e caracteres extras
+				// Handles double packets and extra characters
 				const clean = message.replace(/\0/g, "").replace(/\r/g, "").replace(/\n/g, "").trim()
 
 				const params = new URLSearchParams(clean)
@@ -78,7 +77,7 @@ class CronosDownTCP extends InstanceBase {
 				const time = params.get('time')
 
 				// -------------------------
-				// RECEBE TEMPO DO SERVIDOR
+				// RECEIVES TIME FROM SERVER
 				// -------------------------
 				if (hours && minutes && seconds && time) {
 
@@ -91,23 +90,20 @@ class CronosDownTCP extends InstanceBase {
 						timer_minutes: String(min).padStart(2, '0'),
 						timer_seconds: String(sec).padStart(2, '0'),
 
-						// TIMER COMPLETO JÁ FORMATADO
+						// FULL TIMER ALREADY FORMATTED
 						timer: `${String(hr)}:${String(min).padStart(2, '0')}:${String(sec).padStart(2, '0')}`,
 					})
 
 
 
-					// MUITO IMPORTANTE !!!!
+					// VERY IMPORTANT !!!
 					this.checkFeedbacks()
-
-
-					this.log('info', `Received time: ${hr}:${min}:${sec}`)
 					return
 				}
 
 
 				// -------------------------------
-				// RECEBE PRESETS (item1…item20)
+				// RECEIVES PRESETS (item1…item20)
 				// -------------------------------
 				const itemValues = {}
 
@@ -121,14 +117,11 @@ class CronosDownTCP extends InstanceBase {
 				if (Object.keys(itemValues).length > 0) {
 					this.setVariableValues(itemValues)
 					this.checkFeedbacks()
-
-					this.log('info', `Received items: ${Object.values(itemValues).join(', ')}`)
 				}
 			})
 
 			this.socket.on('error', (err) => {
 				this.updateStatus(InstanceStatus.ConnectionFailure, err.message)
-				this.log('error', 'Network error: ' + err.message)
 			})
 		}
 		else {
@@ -137,7 +130,7 @@ class CronosDownTCP extends InstanceBase {
 	}
 
 	// ---------------------------------------------------------
-	// VARIÁVEIS
+	// VARIABLES
 	// ---------------------------------------------------------
 	init_tcp_variables() {
 		const variables = [
@@ -154,11 +147,11 @@ class CronosDownTCP extends InstanceBase {
 
 		this.setVariableDefinitions(variables)
 
-		// Valores iniciais (não usados, apenas placeholder)
+		// Initial values (not used, only placeholder)
 		const now = new Date()
-		const hours = now.getHours().toString().padStart(2, '0')
-		const minutes = now.getMinutes().toString().padStart(2, '0')
-		const seconds = now.getSeconds().toString().padStart(2, '0')
+		const hours = now.getHours().toString()
+		const minutes = now.getMinutes().toString()
+		const seconds = now.getSeconds().toString()
 
 		const initialValues = {
 			timer: `${hours}:${minutes}:${seconds}`,
