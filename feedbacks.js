@@ -1,11 +1,11 @@
 export function getFeedbackDefinitions(self) {
 	return {
 
-		// Tempo maior que 1 minuto — VERDE
+		// Time greater than 1 minute â€” GREEN
 		timer_green: {
 			type: 'boolean',
-			name: 'Tempo maior que 1 min (Verde)',
-			description: 'Fica verde enquanto o tempo total for maior que 60 segundos.',
+			name: 'Time greater than 1 min (Green)',
+			description: 'Turns green while the total time is greater than 60 seconds.',
 			options: [],
 			callback: () => {
 				const min = parseInt(self.getVariableValue('timer_minutes') || 0)
@@ -19,11 +19,11 @@ export function getFeedbackDefinitions(self) {
 			},
 		},
 
-		// Entre 1 min e 30 segundos — AMARELO
+		// Between 1 min and 30 seconds â€” YELLOW
 		timer_yellow: {
 			type: 'boolean',
-			name: 'Tempo entre 30s e 1 min (Amarelo)',
-			description: 'Fica amarelo enquanto estiver entre 60s e 31s.',
+			name: 'Time between 30s and 1 min (Yellow)',
+			description: 'Turns yellow while it is between 60s and 31s.',
 			options: [],
 			callback: () => {
 				const min = parseInt(self.getVariableValue('timer_minutes') || 0)
@@ -37,11 +37,11 @@ export function getFeedbackDefinitions(self) {
 			},
 		},
 
-		// Abaixo de 30 segundos — VERMELHO
+		// Below 30 seconds â€” RED
 		timer_red: {
 			type: 'boolean',
-			name: 'Tempo menor ou igual a 30s (Vermelho)',
-			description: 'Fica vermelho quando o tempo total for 30 segundos ou menos.',
+			name: 'Time less than or equal to 30s (Red)',
+			description: 'Turns red when the total time is 30 seconds or less.',
 			options: [],
 			callback: () => {
 				const min = parseInt(self.getVariableValue('timer_minutes') || 0)
